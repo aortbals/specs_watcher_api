@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'search' => 'search#index'
   get 'availability' => 'availability#index'
+  resources :categories, only: [:index, :show]
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

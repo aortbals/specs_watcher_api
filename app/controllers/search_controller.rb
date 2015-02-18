@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  before_action :search, only: :index
+  before_action :execute_search, only: :index
 
   def index
     render json: @results
@@ -7,11 +7,11 @@ class SearchController < ApplicationController
 
   private
 
-  def search
-    @results = SpecsWatcher::Searcher.search(keyword: index_params, format: 'json')
+  def execute_search
+    @results = SpecsWatcher::Searcher.search(keyword: q, format: 'json')
   end
 
-  def index_params
+  def q
     params.require(:q)
   end
 end
