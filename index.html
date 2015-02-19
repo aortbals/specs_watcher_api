@@ -41,15 +41,14 @@
 <blockquote>
 <p>Include an API key in the <code class="prettyprint">Authorization</code> header of your request:</p>
 </blockquote>
-<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/search?q=balvenie'</span>
-  -H <span class="s2">"Authorization: API_KEY"</span>
+<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/search?q=balvenie'</span> -H <span class="s2">"Authorization: Token token=API_KEY"</span>
 </code></pre>
 
 <p>Specs Watcher uses API keys to allow access to the API. Currently, API keys are not available to the public. If you&rsquo;d like one, considering using the <a href="https://github.com/aortbals/specs_watcher_api">open source project</a> yourself, or please <a href="mailto:me@aaronortbals.com">get in touch</a>.</p>
 
 <p>Specs Watcher expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: API_KEY</code></p>
+<p><code class="prettyprint">Authorization: Token token=API_KEY</code></p>
 
 <aside class="notice">
 You must replace `API_KEY` with an authorized API key.
@@ -58,8 +57,7 @@ You must replace `API_KEY` with an authorized API key.
 <h1 id="search">Search</h1>
 
 <h2 id="keyword-search">Keyword Search</h2>
-<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/search?q=balvenie'</span>
-  -H <span class="s2">"Authorization: API_KEY"</span>
+<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/search?q=balvenie'</span> -H <span class="s2">"Authorization: Token token=API_KEY"</span>
 </code></pre>
 
 <blockquote>
@@ -116,8 +114,7 @@ You must replace `API_KEY` with an authorized API key.
 <h1 id="availability">Availability</h1>
 
 <h2 id="check-availability">Check Availability</h2>
-<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/availability?zip=90210&amp;upc=008366487306'</span>
-  -H <span class="s2">"Authorization: API_KEY"</span>
+<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/availability?zip=90210&amp;upc=008366487306'</span> -H <span class="s2">"Authorization: Token token=API_KEY"</span>
 </code></pre>
 
 <blockquote>
@@ -171,8 +168,7 @@ You must replace `API_KEY` with an authorized API key.
 <h1 id="categories">Categories</h1>
 
 <h2 id="list-categories">List Categories</h2>
-<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/categories'</span>
-  -H <span class="s2">"Authorization: API_KEY"</span>
+<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/categories'</span> -H <span class="s2">"Authorization: Token token=API_KEY"</span>
 </code></pre>
 
 <blockquote>
@@ -216,8 +212,7 @@ You must replace `API_KEY` with an authorized API key.
 <p><code class="prettyprint">GET http://specs-watcher.herokuapp.com/categories</code></p>
 
 <h2 id="list-items-in-a-category">List Items in a Category</h2>
-<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/categories/rum'</span>
-  -H <span class="s2">"Authorization: API_KEY"</span>
+<pre><code class="highlight shell">curl <span class="s1">'http://specs-watcher.herokuapp.com/categories/rum'</span> -H <span class="s2">"Authorization: Token token=API_KEY"</span>
 </code></pre>
 
 <blockquote>
