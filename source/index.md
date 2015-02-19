@@ -13,8 +13,7 @@ The Specs Watcher API searches through Spec’s online inventory. This project i
 > Include an API key in the `Authorization` header of your request:
 
 ```shell
-curl 'http://specs-watcher.herokuapp.com/search?q=balvenie'
-  -H "Authorization: API_KEY"
+curl 'http://specs-watcher.herokuapp.com/search?q=balvenie' -H "Authorization: Token token=API_KEY"
 ```
 
 
@@ -22,7 +21,7 @@ Specs Watcher uses API keys to allow access to the API. Currently, API keys are 
 
 Specs Watcher expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: API_KEY`
+`Authorization: Token token=API_KEY`
 
 <aside class="notice">
 You must replace `API_KEY` with an authorized API key.
@@ -34,8 +33,7 @@ You must replace `API_KEY` with an authorized API key.
 
 
 ```shell
-curl 'http://specs-watcher.herokuapp.com/search?q=balvenie'
-  -H "Authorization: API_KEY"
+curl 'http://specs-watcher.herokuapp.com/search?q=balvenie' -H "Authorization: Token token=API_KEY"
 ```
 
 > Example JSON response:
@@ -83,8 +81,7 @@ q | **yes** | none | The search query
 ## Check Availability
 
 ```shell
-curl 'http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306'
-  -H "Authorization: API_KEY"
+curl 'http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306' -H "Authorization: Token token=API_KEY"
 ```
 
 > Example JSON response:
@@ -125,8 +122,7 @@ upc | **yes** | none | The product UPC to check for
 
 
 ```shell
-curl 'http://specs-watcher.herokuapp.com/categories'
-  -H "Authorization: API_KEY"
+curl 'http://specs-watcher.herokuapp.com/categories' -H "Authorization: Token token=API_KEY"
 ```
 
 > Example JSON response:
@@ -173,8 +169,7 @@ This endpoint lists the different categories that an item can fall under.
 ## List Items in a Category
 
 ```shell
-curl 'http://specs-watcher.herokuapp.com/categories/rum'
-  -H "Authorization: API_KEY"
+curl 'http://specs-watcher.herokuapp.com/categories/rum' -H "Authorization: Token token=API_KEY"
 ```
 
 > Example JSON response:
