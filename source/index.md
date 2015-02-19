@@ -104,6 +104,8 @@ curl 'http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306
 
 This endpoint retrieves the availability of an item based on `zip` code and `upc`.
 
+<aside class="notice">This endpoint is fairly slow and can take up to several seconds to complete.</aside>
+
 ### HTTP Request
 
 `GET http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306`
@@ -201,7 +203,7 @@ curl 'http://specs-watcher.herokuapp.com/categories/rum' -H "Authorization: Toke
 
 This endpoint lists all items in a category.
 
-<aside class="notice">Keep in mind that this is an expensive query and should be cached locally. It limits to 1000 items, but this typically includes all items within a category.</aside>
+<aside class="notice">Keep in mind that this is an expensive query and should be cached locally. It limits to 1000 items. This typically includes all items within a category.</aside>
 
 ### HTTP Request
 
