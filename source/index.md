@@ -1,168 +1,219 @@
 ---
 title: API Reference
 
-language_tabs:
-  - shell
-  - ruby
-  - python
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
-
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The Specs Watcher API searches through Spec’s online inventory. This project is just for fun, and is not meant to be relied on in any sort of *serious* capacity.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Include an API key in the `Authorization` header of your request:
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl 'http://specs-watcher.herokuapp.com/search?q=balvenie'
+  -H "Authorization: API_KEY"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Specs Watcher uses API keys to allow access to the API. Currently, API keys are not available to the public. If you'd like one, considering using the [open source project](https://github.com/aortbals/specs_watcher_api) yourself, or please [get in touch](mailto:me@aaronortbals.com).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Specs Watcher expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: API_KEY`
 
 <aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+You must replace `API_KEY` with an authorized API key.
 </aside>
 
-# Kittens
+# Search
 
-## Get All Kittens
+## Keyword Search
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl 'http://specs-watcher.herokuapp.com/search?q=balvenie'
+  -H "Authorization: API_KEY"
 ```
 
-> The above command returns JSON structured like this:
+> Example JSON response:
 
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "title": "BALVENIE  MALT * 12YR SINGLE BARREL 6/CS  [SCOTLAND]",
+    "price": 72.41,
+    "size": "750ML",
+    "case_price": 386.65,
+    "case_size": "Case [6]",
+    "description": "",
+    "image": "http://www.specsonline.com/prodpics/008366487306.jpg",
+    "upc": "008366487306"
   },
   {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "title": "BALVENIE MALT * 12YR DOUBLEWOOD  [SCOTLAND]",
+    "price": 51.99,
+    "size": "750ML",
+    "case_price": 576.13,
+    "case_size": "Case [12]",
+    "description": "AMBER COLOUR. NOSE SHERRY AND ORANGE SKINS. MEDIUM RICH BODY. PALATE BEAUTIFULLY COMBINED FLAVOURS; NUTTY SWEET SHERRY ORANGERY FRUITINESS AND CINNAMON SPICINESS. FINISH LONG TINGLING WARM.",
+    "image": "http://www.specsonline.com/prodpics/008366411221.jpg",
+    "upc": "008366411221"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint searches for items by keyword.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET http://specs-watcher.herokuapp.com/search?q=balvenie`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Required | Default | Description
+--------- | ------- | ------- | -----------
+q | **yes** | none | The search query
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
+# Availability
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Check Availability
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl 'http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306'
+  -H "Authorization: API_KEY"
 ```
 
-> The above command returns JSON structured like this:
+> Example JSON response:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "title": "BALVENIE  MALT * 12YR SINGLE BARREL 6/CS  [SCOTLAND] 750ML",
+  "locations": [
+    {
+      "store_name": "00-Downtown",
+      "availability": "Available"
+    },
+    {
+      "store_name": "150-Dallas",
+      "availability": "Available"
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+This endpoint retrieves the availability of an item based on `zip` code and `upc`.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306`
+
+### Query Parameters
+
+Parameter | Required | Default | Description
+--------- | ------- | ------- | -----------
+zip | **yes** | none | The zip code
+upc | **yes** | none | The product UPC to check for
+
+
+# Categories
+
+## List Categories
+
+
+```shell
+curl 'http://specs-watcher.herokuapp.com/categories'
+  -H "Authorization: API_KEY"
+```
+
+> Example JSON response:
+
+```json
+[
+  "armagnac",
+  "blended_whiskey",
+  "bourbon",
+  "boutique_bourbon",
+  "brandy",
+  "canadian_whiskey",
+  "cocktails",
+  "cognac",
+  "cream_liqueurs",
+  "decanters",
+  "eau_de_vie",
+  "flavored_vodka",
+  "gift_liquor",
+  "gin",
+  "grappa",
+  "imported_vodka",
+  "irish_whisky",
+  "liqueur",
+  "miniatures_50ml",
+  "other_whiskeys",
+  "rum",
+  "scotch_blends",
+  "scotch_malts",
+  "tequila",
+  "tequila_super_premium",
+  "us_vodka",
+  "whiskey_flavored"
+]
+```
+
+This endpoint lists the different categories that an item can fall under.
+
+### HTTP Request
+
+`GET http://specs-watcher.herokuapp.com/categories`
+
+
+## List Items in a Category
+
+```shell
+curl 'http://specs-watcher.herokuapp.com/categories/rum'
+  -H "Authorization: API_KEY"
+```
+
+> Example JSON response:
+
+```json
+[
+  {
+    "title": "10 CANE RUM  [TRINIDAD]",
+    "price": 33.67,
+    "size": "LT",
+    "case_price": 187.2,
+    "case_size": "Case [6]",
+    "description": "",
+    "image": "http://www.specsonline.com/prodpics/008807616445.jpg",
+    "upc": "008807616445"
+  },
+  {
+    "title": "10 CANE RUM  [TRINIDAD]",
+    "price": 14.73,
+    "size": "375ML",
+    "case_price": 145.89,
+    "case_size": "Case [12]",
+    "description": "",
+    "image": "http://www.specsonline.com/prodpics/008807616518.jpg",
+    "upc": "008807616518"
+  }
+]
+```
+
+This endpoint lists all items in a category.
+
+<aside class="notice">Keep in mind that this is an expensive query and should be cached locally. It limits to 1000 items, but this typically includes all items within a category.</aside>
+
+### HTTP Request
+
+`GET http://specs-watcher.herokuapp.com/categories/rum`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
-
+Parameter | Required | Default | Description
+--------- | ------- | ------- | -----------
+id | **yes** | none | The category to retrieve. Example: `rum`.
