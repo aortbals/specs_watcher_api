@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    render json: @results
+    render json: items
   end
 
   private

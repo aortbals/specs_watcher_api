@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate
 
+  protected
+
+  def items
+    @results.map { |r|
+      r[:title] = r[:title].titleize
+      r[:description] = r[:description].capitalize
+      r
+    }
+  end
+
   private
 
   def authenticate
