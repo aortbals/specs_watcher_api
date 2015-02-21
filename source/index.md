@@ -41,7 +41,7 @@ curl 'http://specs-watcher.herokuapp.com/search?q=balvenie' -H "Authorization: T
 ```json
 [
   {
-    "title": "BALVENIE  MALT * 12YR SINGLE BARREL 6/CS  [SCOTLAND]",
+    "title": "Balvenie  Malt * 12 Yr Single Barrel 6/Cs  [Scotland]",
     "price": 72.41,
     "size": "750ML",
     "case_price": 386.65,
@@ -51,12 +51,12 @@ curl 'http://specs-watcher.herokuapp.com/search?q=balvenie' -H "Authorization: T
     "upc": "008366487306"
   },
   {
-    "title": "BALVENIE MALT * 12YR DOUBLEWOOD  [SCOTLAND]",
+    "title": "Balvenie Malt * 12 Yr Doublewood  [Scotland]",
     "price": 51.99,
     "size": "750ML",
     "case_price": 576.13,
     "case_size": "Case [12]",
-    "description": "AMBER COLOUR. NOSE SHERRY AND ORANGE SKINS. MEDIUM RICH BODY. PALATE BEAUTIFULLY COMBINED FLAVOURS; NUTTY SWEET SHERRY ORANGERY FRUITINESS AND CINNAMON SPICINESS. FINISH LONG TINGLING WARM.",
+    "description": "Amber colour. nose sherry and orange skins. medium rich body. palate beautifully combined flavours; nutty sweet sherry orangery fruitiness and cinnamon spiciness. finish long tingling warm.",
     "image": "http://www.specsonline.com/prodpics/008366411221.jpg",
     "upc": "008366411221"
   }
@@ -92,11 +92,25 @@ curl 'http://specs-watcher.herokuapp.com/availability?zip=90210&upc=008366487306
   "locations": [
     {
       "store_name": "00-Downtown",
-      "availability": "Available"
+      "availability": "Available",
+      "store_details": {
+        "name": "Downtown",
+        "address": "2410 Smith Street, Houston TX",
+        "phone": "713-526-8787",
+        "lat": "29.748598",
+        "lng": "-95.376776"
+      }
     },
     {
-      "store_name": "150-Dallas",
-      "availability": "Available"
+      "store_name": "03-First Colony",
+      "availability": "Call Store",
+      "store_details": {
+        "name": "First Colony",
+        "address": "3335 Hwy 6 South, Sugar Land TX",
+        "phone": "281-313-4444",
+        "lat": "29.591758",
+        "lng": "-95.603347"
+      }
     }
   ]
 }
