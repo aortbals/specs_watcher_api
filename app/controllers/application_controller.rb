@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
-    return true if ENV['API_KEY'].blank?
+    return true if ENV['API_KEY'].blank? || Rails.env.development?
 
     authenticate_or_request_with_http_token do |token, options|
       token == ENV['API_KEY']
