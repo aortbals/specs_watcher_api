@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :execute_search, only: :show
 
   def index
-    render json: SpecsWatcher::Searcher.sub_categories.keys
+    render json: categories
   end
 
   def show
@@ -11,11 +11,11 @@ class CategoriesController < ApplicationController
 
   private
 
-  def results
-    @results.map {|r|
+  def categories
+    SpecsWatcher::Searcher.sub_categories.keys.map {|r|
       {
         key: r,
-        title: r.titleize
+        title: r.to_s.titleize
       }
     }
   end
