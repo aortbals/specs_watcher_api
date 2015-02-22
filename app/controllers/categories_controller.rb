@@ -11,6 +11,15 @@ class CategoriesController < ApplicationController
 
   private
 
+  def results
+    @results.map {|r|
+      {
+        key: r,
+        title: r.titleize
+      }
+    }
+  end
+
   def execute_search
     @results = SpecsWatcher::Searcher.search(category: id, format: 'json')
   end
